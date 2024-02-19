@@ -1,0 +1,22 @@
+{
+  "SseMarket": {
+    "address": "0x89e160AA023C1b90bD382dc84196036B50F79A4E",
+    "salt": "0x0000000000000000000000000000000000000000d4b6fcc21169b803f25d5559",
+    "args": []
+  },
+  "VRFConsumerV2": {
+    "address": "0x174Fc47163Ad6536aBfFb5eDE52246F4bE5E6CD2",
+    "salt": "0x0000000000000000000000000000000000000000d4b6fcc21169b803f25d2222",
+    "args": [
+      7066,
+      "0x8103B0A8A00be2DDC778e6e7eaa21791Cd364625",
+      "0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c"
+    ]
+  },
+  "SseGasManager": {
+    "address": "0xDa2986353d15b7CfFA631c3035465A25555Ab0dd",
+    "args": [
+      "100000000000000"
+    ]
+  }
+}
