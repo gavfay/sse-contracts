@@ -188,46 +188,46 @@ uint256 constant BulkOrder_Typehash_Height_Eight = (0x7ff98d9d4e55d876c5cfac10b4
 uint256 constant BulkOrder_Typehash_Height_Nine = (0xbed7be92d41c56f9e59ac7a6272185299b815ddfabc3f25deb51fe55fe2f9e8a);
 uint256 constant BulkOrder_Typehash_Height_Ten = (0xd1d97d1ef5eaa37a4ee5fbf234e6f6d64eb511eb562221cd7edfbdde0848da05);
 uint256 constant BulkOrder_Typehash_Height_Eleven = (
-    0x896c3f349c4da741c19b37fec49ed2e44d738e775a21d9c9860a69d67a3dae53
+  0x896c3f349c4da741c19b37fec49ed2e44d738e775a21d9c9860a69d67a3dae53
 );
 uint256 constant BulkOrder_Typehash_Height_Twelve = (
-    0xbb98d87cc12922b83759626c5f07d72266da9702d19ffad6a514c73a89002f5f
+  0xbb98d87cc12922b83759626c5f07d72266da9702d19ffad6a514c73a89002f5f
 );
 uint256 constant BulkOrder_Typehash_Height_Thirteen = (
-    0xe6ae19322608dd1f8a8d56aab48ed9c28be489b689f4b6c91268563efc85f20e
+  0xe6ae19322608dd1f8a8d56aab48ed9c28be489b689f4b6c91268563efc85f20e
 );
 uint256 constant BulkOrder_Typehash_Height_Fourteen = (
-    0x6b5b04cbae4fcb1a9d78e7b2dfc51a36933d023cf6e347e03d517b472a852590
+  0x6b5b04cbae4fcb1a9d78e7b2dfc51a36933d023cf6e347e03d517b472a852590
 );
 uint256 constant BulkOrder_Typehash_Height_Fifteen = (
-    0xd1eb68309202b7106b891e109739dbbd334a1817fe5d6202c939e75cf5e35ca9
+  0xd1eb68309202b7106b891e109739dbbd334a1817fe5d6202c939e75cf5e35ca9
 );
 uint256 constant BulkOrder_Typehash_Height_Sixteen = (
-    0x1da3eed3ecef6ebaa6e5023c057ec2c75150693fd0dac5c90f4a142f9879fde8
+  0x1da3eed3ecef6ebaa6e5023c057ec2c75150693fd0dac5c90f4a142f9879fde8
 );
 uint256 constant BulkOrder_Typehash_Height_Seventeen = (
-    0xeee9a1392aa395c7002308119a58f2582777a75e54e0c1d5d5437bd2e8bf6222
+  0xeee9a1392aa395c7002308119a58f2582777a75e54e0c1d5d5437bd2e8bf6222
 );
 uint256 constant BulkOrder_Typehash_Height_Eighteen = (
-    0xc3939feff011e53ab8c35ca3370aad54c5df1fc2938cd62543174fa6e7d85877
+  0xc3939feff011e53ab8c35ca3370aad54c5df1fc2938cd62543174fa6e7d85877
 );
 uint256 constant BulkOrder_Typehash_Height_Nineteen = (
-    0x0efca7572ac20f5ae84db0e2940674f7eca0a4726fa1060ffc2d18cef54b203d
+  0x0efca7572ac20f5ae84db0e2940674f7eca0a4726fa1060ffc2d18cef54b203d
 );
 uint256 constant BulkOrder_Typehash_Height_Twenty = (
-    0x5a4f867d3d458dabecad65f6201ceeaba0096df2d0c491cc32e6ea4e64350017
+  0x5a4f867d3d458dabecad65f6201ceeaba0096df2d0c491cc32e6ea4e64350017
 );
 uint256 constant BulkOrder_Typehash_Height_TwentyOne = (
-    0x80987079d291feebf21c2230e69add0f283cee0b8be492ca8050b4185a2ff719
+  0x80987079d291feebf21c2230e69add0f283cee0b8be492ca8050b4185a2ff719
 );
 uint256 constant BulkOrder_Typehash_Height_TwentyTwo = (
-    0x3bd8cff538aba49a9c374c806d277181e9651624b3e31111bc0624574f8bca1d
+  0x3bd8cff538aba49a9c374c806d277181e9651624b3e31111bc0624574f8bca1d
 );
 uint256 constant BulkOrder_Typehash_Height_TwentyThree = (
-    0x5d6a3f098a0bc373f808c619b1bb4028208721b3c4f8d6bc8a874d659814eb76
+  0x5d6a3f098a0bc373f808c619b1bb4028208721b3c4f8d6bc8a874d659814eb76
 );
 uint256 constant BulkOrder_Typehash_Height_TwentyFour = (
-    0x1d51df90cba8de7637ca3e8fe1e3511d1dc2f23487d05dbdecb781860c21ac1c
+  0x1d51df90cba8de7637ca3e8fe1e3511d1dc2f23487d05dbdecb781860c21ac1c
 );
 
 uint256 constant receivedItemsHash_ptr = 0x60;
@@ -365,14 +365,14 @@ uint256 constant Counter_blockhash_shift = 0x80;
 // Signature-related
 bytes32 constant EIP2098_allButHighestBitMask = (0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff);
 bytes32 constant ECDSA_twentySeventhAndTwentyEighthBytesSet = (
-    0x0000000000000000000000000000000000000000000000000000000101000000
+  0x0000000000000000000000000000000000000000000000000000000101000000
 );
 uint256 constant ECDSA_MaxLength = 65;
 uint256 constant ECDSA_signature_s_offset = 0x40;
 uint256 constant ECDSA_signature_v_offset = 0x60;
 
 bytes32 constant EIP1271_isValidSignature_selector = (
-    0x1626ba7e00000000000000000000000000000000000000000000000000000000
+  0x1626ba7e00000000000000000000000000000000000000000000000000000000
 );
 uint256 constant EIP1271_isValidSignature_digest_negativeOffset = 0x40;
 uint256 constant EIP1271_isValidSignature_selector_negativeOffset = 0x44;
@@ -438,7 +438,6 @@ uint256 constant NonMatchSelector_MagicMask = (0x4000000000000000000000000000000
 // First bit indicates that a NATIVE offer items has been used and the 231st bit
 // indicates that a non match selector has been called.
 uint256 constant NonMatchSelector_InvalidErrorValue = (0x4000000000000000000000000000000000000000000000000000000001);
-
 
 // ConsiderationDecoder Constants
 uint256 constant OrderParameters_head_size = 0x0160;

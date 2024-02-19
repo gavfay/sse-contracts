@@ -16,17 +16,17 @@ import { CalldataPointer, MemoryPointer } from "./PointerLibraries.sol";
  *      be received by their respective recipient.
  */
 struct OrderComponents {
-    address offerer;
-    address zone;
-    OfferItem[] offer;
-    ConsiderationItem[] consideration;
-    OrderType orderType;
-    uint256 startTime;
-    uint256 endTime;
-    bytes32 zoneHash;
-    uint256 salt;
-    bytes32 conduitKey;
-    uint256 counter;
+  address offerer;
+  address zone;
+  OfferItem[] offer;
+  ConsiderationItem[] consideration;
+  OrderType orderType;
+  uint256 startTime;
+  uint256 endTime;
+  bytes32 zoneHash;
+  uint256 salt;
+  bytes32 conduitKey;
+  uint256 counter;
 }
 
 /**
@@ -39,11 +39,11 @@ struct OrderComponents {
  *      order.
  */
 struct OfferItem {
-    ItemType itemType;
-    address token;
-    uint256 identifierOrCriteria;
-    uint256 startAmount;
-    uint256 endAmount;
+  ItemType itemType;
+  address token;
+  uint256 identifierOrCriteria;
+  uint256 startAmount;
+  uint256 endAmount;
 }
 
 /**
@@ -52,12 +52,12 @@ struct OfferItem {
  *      item.
  */
 struct ConsiderationItem {
-    ItemType itemType;
-    address token;
-    uint256 identifierOrCriteria;
-    uint256 startAmount;
-    uint256 endAmount;
-    address payable recipient;
+  ItemType itemType;
+  address token;
+  uint256 identifierOrCriteria;
+  uint256 startAmount;
+  uint256 endAmount;
+  address payable recipient;
 }
 
 /**
@@ -66,10 +66,10 @@ struct ConsiderationItem {
  *      ERC1155), a token address, a tokenId, and an amount.
  */
 struct SpentItem {
-    ItemType itemType;
-    address token;
-    uint256 identifier;
-    uint256 amount;
+  ItemType itemType;
+  address token;
+  uint256 identifier;
+  uint256 amount;
 }
 
 /**
@@ -78,11 +78,11 @@ struct SpentItem {
  *      component designating the required recipient of the item.
  */
 struct ReceivedItem {
-    ItemType itemType;
-    address token;
-    uint256 identifier;
-    uint256 amount;
-    address payable recipient;
+  ItemType itemType;
+  address token;
+  uint256 identifier;
+  uint256 amount;
+  address payable recipient;
 }
 
 /**
@@ -91,8 +91,8 @@ struct ReceivedItem {
  *      native token) or ERC20 token for the order.
  */
 struct AdditionalRecipient {
-    uint256 amount;
-    address payable recipient;
+  uint256 amount;
+  address payable recipient;
 }
 
 /**
@@ -102,26 +102,26 @@ struct AdditionalRecipient {
  *      supplied, as the caller may specify additional consideration items.
  */
 struct OrderParameters {
-    address offerer; // 0x00
-    address zone; // 0x20
-    OfferItem[] offer; // 0x40
-    ConsiderationItem[] consideration; // 0x60
-    OrderType orderType; // 0x80
-    uint256 startTime; // 0xa0
-    uint256 endTime; // 0xc0
-    bytes32 zoneHash; // 0xe0
-    uint256 salt; // 0x100
-    bytes32 conduitKey; // 0x120
-    uint256 totalOriginalConsiderationItems; // 0x140
-    // offer.length                          // 0x160
+  address offerer; // 0x00
+  address zone; // 0x20
+  OfferItem[] offer; // 0x40
+  ConsiderationItem[] consideration; // 0x60
+  OrderType orderType; // 0x80
+  uint256 startTime; // 0xa0
+  uint256 endTime; // 0xc0
+  bytes32 zoneHash; // 0xe0
+  uint256 salt; // 0x100
+  bytes32 conduitKey; // 0x120
+  uint256 totalOriginalConsiderationItems; // 0x140
+  // offer.length                          // 0x160
 }
 
 /**
  * @dev Orders require a signature in addition to the other order parameters.
  */
 struct Order {
-    OrderParameters parameters;
-    bytes signature;
+  OrderParameters parameters;
+  bytes signature;
 }
 
 /**
@@ -133,11 +133,11 @@ struct Order {
  *      provided to the offerer as context for contract order types.
  */
 struct AdvancedOrder {
-    OrderParameters parameters;
-    uint120 numerator;
-    uint120 denominator;
-    bytes signature;
-    bytes extraData;
+  OrderParameters parameters;
+  uint120 numerator;
+  uint120 denominator;
+  bytes signature;
+  bytes extraData;
 }
 
 /**
@@ -148,10 +148,10 @@ struct AdvancedOrder {
  *      numerator and denominator).
  */
 struct OrderStatus {
-    bool isValidated;
-    bool isCancelled;
-    uint120 numerator;
-    uint120 denominator;
+  bool isValidated;
+  bool isCancelled;
+  uint120 numerator;
+  uint120 denominator;
 }
 
 /**
@@ -161,11 +161,11 @@ struct OrderStatus {
  *      criteria.
  */
 struct CriteriaResolver {
-    uint256 orderIndex;
-    Side side;
-    uint256 index;
-    uint256 identifier;
-    bytes32[] criteriaProof;
+  uint256 orderIndex;
+  Side side;
+  uint256 index;
+  uint256 identifier;
+  bytes32[] criteriaProof;
 }
 
 /**
@@ -179,8 +179,8 @@ struct CriteriaResolver {
  *      consideration items (token, type, tokenId, and recipient).
  */
 struct Fulfillment {
-    FulfillmentComponent[] offerComponents;
-    FulfillmentComponent[] considerationComponents;
+  FulfillmentComponent[] offerComponents;
+  FulfillmentComponent[] considerationComponents;
 }
 
 /**
@@ -188,8 +188,8 @@ struct Fulfillment {
  *      order and another referencing a specific offer or consideration item.
  */
 struct FulfillmentComponent {
-    uint256 orderIndex;
-    uint256 itemIndex;
+  uint256 orderIndex;
+  uint256 itemIndex;
 }
 
 /**
@@ -203,9 +203,9 @@ struct FulfillmentComponent {
  *      fulfillments) and returned as part of `matchOrders`.
  */
 struct Execution {
-    ReceivedItem item;
-    address offerer;
-    bytes32 conduitKey;
+  ReceivedItem item;
+  address offerer;
+  bytes32 conduitKey;
 }
 
 /**
@@ -215,16 +215,16 @@ struct Execution {
  *      call to a match or fulfillAvailable method.
  */
 struct ZoneParameters {
-    bytes32 orderHash;
-    address fulfiller;
-    address offerer;
-    SpentItem[] offer;
-    ReceivedItem[] consideration;
-    bytes extraData;
-    bytes32[] orderHashes;
-    uint256 startTime;
-    uint256 endTime;
-    bytes32 zoneHash;
+  bytes32 orderHash;
+  address fulfiller;
+  address offerer;
+  SpentItem[] offer;
+  ReceivedItem[] consideration;
+  bytes extraData;
+  bytes32[] orderHashes;
+  uint256 startTime;
+  uint256 endTime;
+  bytes32 zoneHash;
 }
 
 /**
@@ -232,20 +232,20 @@ struct ZoneParameters {
  *      along with any associated metadata related to each schema.
  */
 struct Schema {
-    uint256 id;
-    bytes metadata;
+  uint256 id;
+  bytes metadata;
 }
 
 struct OrderProbility {
-    bytes32 orderHash;
-    uint256 numerator;
-    uint256 denominator;
+  bytes32 orderHash;
+  uint256 numerator;
+  uint256 denominator;
 }
 
 struct LastMatchStatus {
-    uint120 numerator;
-    uint120 denominator;
-    uint256 timestamp;
+  uint120 numerator;
+  uint120 denominator;
+  uint256 timestamp;
 }
 
 using StructPointers for OrderComponents global;
@@ -269,393 +269,393 @@ using StructPointers for ZoneParameters global;
  *      pointers.
  */
 library StructPointers {
-    /**
-     * @dev Get a MemoryPointer from OrderComponents.
-     *
-     * @param obj The OrderComponents object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(OrderComponents memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from OrderComponents.
+   *
+   * @param obj The OrderComponents object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(OrderComponents memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from OrderComponents.
-     *
-     * @param obj The OrderComponents object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(OrderComponents calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from OrderComponents.
+   *
+   * @param obj The OrderComponents object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(OrderComponents calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from OfferItem.
-     *
-     * @param obj The OfferItem object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(OfferItem memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from OfferItem.
+   *
+   * @param obj The OfferItem object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(OfferItem memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from OfferItem.
-     *
-     * @param obj The OfferItem object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(OfferItem calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from OfferItem.
+   *
+   * @param obj The OfferItem object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(OfferItem calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from ConsiderationItem.
-     *
-     * @param obj The ConsiderationItem object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(ConsiderationItem memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from ConsiderationItem.
+   *
+   * @param obj The ConsiderationItem object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(ConsiderationItem memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from ConsiderationItem.
-     *
-     * @param obj The ConsiderationItem object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(ConsiderationItem calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from ConsiderationItem.
+   *
+   * @param obj The ConsiderationItem object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(ConsiderationItem calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from SpentItem.
-     *
-     * @param obj The SpentItem object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(SpentItem memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from SpentItem.
+   *
+   * @param obj The SpentItem object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(SpentItem memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from SpentItem.
-     *
-     * @param obj The SpentItem object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(SpentItem calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from SpentItem.
+   *
+   * @param obj The SpentItem object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(SpentItem calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from ReceivedItem.
-     *
-     * @param obj The ReceivedItem object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(ReceivedItem memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from ReceivedItem.
+   *
+   * @param obj The ReceivedItem object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(ReceivedItem memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from ReceivedItem.
-     *
-     * @param obj The ReceivedItem object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(ReceivedItem calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from ReceivedItem.
+   *
+   * @param obj The ReceivedItem object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(ReceivedItem calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from AdditionalRecipient.
-     *
-     * @param obj The AdditionalRecipient object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(AdditionalRecipient memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from AdditionalRecipient.
+   *
+   * @param obj The AdditionalRecipient object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(AdditionalRecipient memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from AdditionalRecipient.
-     *
-     * @param obj The AdditionalRecipient object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(AdditionalRecipient calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from AdditionalRecipient.
+   *
+   * @param obj The AdditionalRecipient object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(AdditionalRecipient calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from OrderParameters.
-     *
-     * @param obj The OrderParameters object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(OrderParameters memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from OrderParameters.
+   *
+   * @param obj The OrderParameters object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(OrderParameters memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from OrderParameters.
-     *
-     * @param obj The OrderParameters object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(OrderParameters calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from OrderParameters.
+   *
+   * @param obj The OrderParameters object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(OrderParameters calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from Order.
-     *
-     * @param obj The Order object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(Order memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from Order.
+   *
+   * @param obj The Order object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(Order memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from Order.
-     *
-     * @param obj The Order object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(Order calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from Order.
+   *
+   * @param obj The Order object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(Order calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from AdvancedOrder.
-     *
-     * @param obj The AdvancedOrder object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(AdvancedOrder memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from AdvancedOrder.
+   *
+   * @param obj The AdvancedOrder object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(AdvancedOrder memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from AdvancedOrder.
-     *
-     * @param obj The AdvancedOrder object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(AdvancedOrder calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from AdvancedOrder.
+   *
+   * @param obj The AdvancedOrder object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(AdvancedOrder calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from OrderStatus.
-     *
-     * @param obj The OrderStatus object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(OrderStatus memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from OrderStatus.
+   *
+   * @param obj The OrderStatus object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(OrderStatus memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from OrderStatus.
-     *
-     * @param obj The OrderStatus object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(OrderStatus calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from OrderStatus.
+   *
+   * @param obj The OrderStatus object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(OrderStatus calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from CriteriaResolver.
-     *
-     * @param obj The CriteriaResolver object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(CriteriaResolver memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from CriteriaResolver.
+   *
+   * @param obj The CriteriaResolver object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(CriteriaResolver memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from CriteriaResolver.
-     *
-     * @param obj The CriteriaResolver object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(CriteriaResolver calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from CriteriaResolver.
+   *
+   * @param obj The CriteriaResolver object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(CriteriaResolver calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from Fulfillment.
-     *
-     * @param obj The Fulfillment object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(Fulfillment memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from Fulfillment.
+   *
+   * @param obj The Fulfillment object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(Fulfillment memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from Fulfillment.
-     *
-     * @param obj The Fulfillment object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(Fulfillment calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from Fulfillment.
+   *
+   * @param obj The Fulfillment object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(Fulfillment calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from FulfillmentComponent.
-     *
-     * @param obj The FulfillmentComponent object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(FulfillmentComponent memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from FulfillmentComponent.
+   *
+   * @param obj The FulfillmentComponent object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(FulfillmentComponent memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from FulfillmentComponent.
-     *
-     * @param obj The FulfillmentComponent object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(FulfillmentComponent calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from FulfillmentComponent.
+   *
+   * @param obj The FulfillmentComponent object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(FulfillmentComponent calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from Execution.
-     *
-     * @param obj The Execution object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(Execution memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from Execution.
+   *
+   * @param obj The Execution object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(Execution memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from Execution.
-     *
-     * @param obj The Execution object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(Execution calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from Execution.
+   *
+   * @param obj The Execution object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(Execution calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a MemoryPointer from ZoneParameters.
-     *
-     * @param obj The ZoneParameters object.
-     *
-     * @return ptr The MemoryPointer.
-     */
-    function toMemoryPointer(ZoneParameters memory obj) internal pure returns (MemoryPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a MemoryPointer from ZoneParameters.
+   *
+   * @param obj The ZoneParameters object.
+   *
+   * @return ptr The MemoryPointer.
+   */
+  function toMemoryPointer(ZoneParameters memory obj) internal pure returns (MemoryPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 
-    /**
-     * @dev Get a CalldataPointer from ZoneParameters.
-     *
-     * @param obj The ZoneParameters object.
-     *
-     * @return ptr The CalldataPointer.
-     */
-    function toCalldataPointer(ZoneParameters calldata obj) internal pure returns (CalldataPointer ptr) {
-        assembly {
-            ptr := obj
-        }
+  /**
+   * @dev Get a CalldataPointer from ZoneParameters.
+   *
+   * @param obj The ZoneParameters object.
+   *
+   * @return ptr The CalldataPointer.
+   */
+  function toCalldataPointer(ZoneParameters calldata obj) internal pure returns (CalldataPointer ptr) {
+    assembly {
+      ptr := obj
     }
+  }
 }

@@ -5,7 +5,6 @@ import { printLastReport } from "./scripts/print_report";
 import { getReportPathForCommit } from "./scripts/utils";
 import { writeReports } from "./scripts/write_reports";
 import "dotenv/config";
-// import dotenv from "dotenv";
 
 import "@nomicfoundation/hardhat-chai-matchers";
 import "@nomiclabs/hardhat-ethers";
@@ -16,8 +15,6 @@ import "hardhat-gas-reporter";
 import type { HardhatUserConfig } from "hardhat/config";
 import { NetworksUserConfig } from "hardhat/types";
 import { CustomChain } from "@nomiclabs/hardhat-etherscan/dist/src/types";
-
-// dotenv.config();
 
 //----------------------------------- for hardhat config ---------------------------------
 export type Chain = {
