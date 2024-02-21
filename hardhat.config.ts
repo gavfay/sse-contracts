@@ -1,5 +1,6 @@
 import { task } from "hardhat/config";
 import { arbitrum, arbitrumSepolia, sepolia } from "viem/chains";
+
 import { compareLastTwoReports } from "./scripts/compare_reports";
 import { printLastReport } from "./scripts/print_report";
 import { getReportPathForCommit } from "./scripts/utils";
@@ -12,11 +13,11 @@ import "@nomiclabs/hardhat-etherscan";
 import "@typechain/hardhat";
 import "hardhat-gas-reporter";
 
+import type { CustomChain } from "@nomiclabs/hardhat-etherscan/dist/src/types";
 import type { HardhatUserConfig } from "hardhat/config";
-import { NetworksUserConfig } from "hardhat/types";
-import { CustomChain } from "@nomiclabs/hardhat-etherscan/dist/src/types";
+import type { NetworksUserConfig } from "hardhat/types";
 
-//----------------------------------- for hardhat config ---------------------------------
+// ----------------------------------- for hardhat config ---------------------------------
 export type Chain = {
   name: string;
   id: number;

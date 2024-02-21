@@ -1,7 +1,9 @@
-import { BigNumberish } from "ethers";
-import { ethers, network } from "hardhat";
-import { deployContract, deployUseCreate2, saveAny, wait1Tx } from "./hutils";
 import { parseEther } from "ethers/lib/utils";
+import { ethers, network } from "hardhat";
+
+import { deployContract, deployUseCreate2, saveAny, wait1Tx } from "./hutils";
+
+import type { BigNumberish } from "ethers";
 
 const VRFConfig: {
   [k: string]: { coor: string; subId: BigNumberish; keyHash: string };

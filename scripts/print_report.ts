@@ -17,13 +17,7 @@ export function printReport(report: ContractReport) {
       calls?.toString() ?? warn("null"),
     ]);
   });
-  rows.push([
-    `runtime size`,
-    report.deployedBytecodeSize.toString(),
-    "",
-    "",
-    "",
-  ]);
+  rows.push([`runtime size`, report.deployedBytecodeSize.toString(), "", "", ""]);
   rows.push([`init code size`, report.bytecodeSize.toString(), "", "", ""]);
   const table = toCommentTable(rows);
   const separator = table[0];
@@ -42,13 +36,6 @@ export function printLastReport(hre: HardhatRuntimeEnvironment) {
   const [currentReport] = reports;
   printReport(currentReport.contractReports[contractName]);
   const ts = Math.floor(Date.now() / 1000);
-  const suffix =
-    currentReport.name !== currentReport.commitHash
-      ? ` @ ${currentReport.commitHash}`
-      : "";
-  console.log(
-    `Current Report: ${+((currentReport.timestamp - ts) / 60).toFixed(
-      2
-    )} min ago (${currentReport.name}) ${suffix}`
-  );
+  const suffix = currentReport.name !== currentReport.commitHash ? ` @ ${currentReport.commitHash}` : "";
+  console.log(`Current Report: ${+((currentReport.timestamp - ts) / 60).toFixed(2)} min ago (${currentReport.name}) ${suffix}`);
 }

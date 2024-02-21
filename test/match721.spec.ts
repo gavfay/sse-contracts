@@ -1,5 +1,6 @@
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
+import { type Wallet, utils } from "ethers";
 import { ethers, network } from "hardhat";
 
 import { buildResolver, randomHex, toBN } from "./utilsv2/encoding";
@@ -7,9 +8,9 @@ import { faucet } from "./utilsv2/faucet";
 import { marketFixture } from "./utilsv2/fixtures";
 import { VERSION } from "./utilsv2/helpers";
 
-import { BigNumber, utils, type Wallet } from "ethers";
 import type { SseMarket, TestERC1155, TestERC20, TestERC721 } from "../typechain-types";
 import type { MarketFixtures } from "./utilsv2/fixtures";
+import type { BigNumber } from "ethers";
 
 const { parseEther } = ethers.utils;
 

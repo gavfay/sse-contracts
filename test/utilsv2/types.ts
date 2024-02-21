@@ -53,10 +53,7 @@ export type OrderParameters = {
   totalOriginalConsiderationItems: string | BigNumber | number;
 };
 
-export type OrderComponents = Omit<
-  OrderParameters,
-  "totalOriginalConsiderationItems"
-> & {
+export type OrderComponents = Omit<OrderParameters, "totalOriginalConsiderationItems"> & {
   counter: BigNumber;
 };
 

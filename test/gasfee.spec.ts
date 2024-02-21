@@ -1,8 +1,10 @@
 import { expect } from "chai";
 import { ethers, network } from "hardhat";
-import { SseGasManager } from "../typechain-types";
+
 import { randomHex } from "./utilsv2/encoding";
 import { faucet } from "./utilsv2/faucet";
+
+import type { SseGasManager } from "../typechain-types";
 const { parseEther } = ethers.utils;
 
 describe("Gas manager tests", function () {

@@ -1,10 +1,11 @@
-import { TransactionResponse } from "@ethersproject/providers";
 import { readFileSync, writeFileSync } from "fs";
 import { ethers, network, run } from "hardhat";
 
-//----------------------------------- for hardhat config ---------------------------------
-import { CustomChain } from "@nomiclabs/hardhat-etherscan/dist/src/types";
-import { HardhatUserConfig, NetworksUserConfig } from "hardhat/types";
+import type { TransactionResponse } from "@ethersproject/providers";
+import type { CustomChain } from "@nomiclabs/hardhat-etherscan/dist/src/types";
+
+// ----------------------------------- for hardhat config ---------------------------------
+import type { HardhatUserConfig, NetworksUserConfig } from "hardhat/types";
 
 export type Chain = {
   name: string;
@@ -62,7 +63,7 @@ export function configChains(config: HardhatUserConfig, supportChains: Chain[]) 
   return config;
 }
 
-//------------------------------------ for deploy and verify ------------------------------
+// ------------------------------------ for deploy and verify ------------------------------
 
 export type DeployedVerifyJson = { [k: string]: any };
 export function getJson(): DeployedVerifyJson {
@@ -136,7 +137,7 @@ export async function verfiy(key: string) {
 export async function verifyAll() {
   const json = getJson() || {};
   for (const key in json) {
-    console.info('start do verify:',key)
+    console.info("start do verify:", key);
     await verfiy(key);
   }
 }

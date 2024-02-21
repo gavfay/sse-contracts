@@ -10,10 +10,7 @@ type EventDecoder = {
   contract: Contract;
 };
 
-export async function decodeEvents(
-  tx: ContractTransaction,
-  eventDecoders: EventDecoder[]
-): Promise<DecodedTransactionEvent[]> {
+export async function decodeEvents(tx: ContractTransaction, eventDecoders: EventDecoder[]): Promise<DecodedTransactionEvent[]> {
   const receipt = await tx.wait();
   const events = receipt.events;
   if (events == null) {
@@ -28,11 +25,7 @@ export async function decodeEvents(
         // event is not an event with name decoder.eventName),
         // the catch will be hit.
         try {
-          const result = decoder.contract.interface.decodeEventLog(
-            decoder.eventName,
-            event.data,
-            event.topics
-          );
+          const result = decoder.contract.interface.decodeEventLog(decoder.eventName, event.data, event.topics);
           return {
             eventName: decoder.eventName,
             data: result,

@@ -4,6 +4,7 @@ import { ethers } from "hardhat";
 
 import { deployContract } from "../contracts";
 import { toBN } from "../encoding";
+
 import { create2FactoryFixture } from "./create2";
 import { marketplaceFixture } from "./marketplace";
 import { tokensFixture } from "./tokens";

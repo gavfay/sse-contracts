@@ -8,9 +8,9 @@ import { getBulkOrderTree } from "../eip712/bulk-orders";
 import { calculateOrderHash, convertSignatureToEIP2098, randomHex, toBN } from "../encoding";
 import { VERSION } from "../helpers";
 
-import type { Contract, Wallet } from "ethers";
 import type { ImmutableCreate2FactoryInterface, SseMarket, TestVRF } from "../../../typechain-types";
 import type { ConsiderationItem, CriteriaResolver, OfferItem, OrderComponents } from "../types";
+import type { Contract, Wallet } from "ethers";
 
 const deployConstants = require("../../../constants/constants");
 // const { bulkOrderType } = require("../../../eip-712-types/bulkOrder");
@@ -132,7 +132,7 @@ export const marketplaceFixture = async (create2Factory: ImmutableCreate2Factory
     const conduitKey = constants.HashZero;
     const counter = await marketplace.getCounter(offerer.address);
 
-    const salt =  '0x8460862738';
+    const salt = "0x8460862738";
     // const salt =  !extraCheap ? randomHex() : constants.HashZero;
     const startTime = timeFlag !== "NOT_STARTED" ? 0 : toBN("0xee00000000000000000000000000");
     const endTime = timeFlag !== "EXPIRED" ? toBN("0xff00000000000000000000000000") : 1;

@@ -60,11 +60,7 @@ export function haveReportForCurrentCommit(): boolean {
 }
 
 export function fileLastUpdate(filePath: string): number {
-  let timestamp = parseInt(
-    execSync(`git log -1 --pretty="format:%ct" ${filePath}`)
-      .toString()
-      .trim() || "0"
-  );
+  let timestamp = parseInt(execSync(`git log -1 --pretty="format:%ct" ${filePath}`).toString().trim() || "0");
   if (!timestamp) {
     timestamp = Math.floor(+fs.statSync(filePath).mtime / 1000);
   }

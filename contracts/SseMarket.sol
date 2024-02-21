@@ -198,13 +198,7 @@ contract SseMarket is Ownable, ReentrancyGuard, ConsiderationBase {
     delete members[addr];
   }
 
-  function onERC1155Received(
-    address operator,
-    address from,
-    uint256 id,
-    uint256 value,
-    bytes calldata data
-  ) external pure returns (bytes4) {
+  function onERC1155Received(address, address, uint256, uint256, bytes calldata) external pure returns (bytes4) {
     return this.onERC1155Received.selector;
   }
 
@@ -584,10 +578,10 @@ contract SseMarket is Ownable, ReentrancyGuard, ConsiderationBase {
         --maximumFulfilled;
 
         // Place the start time for the order on the stack.
-        uint256 startTime = advancedOrder.parameters.startTime;
+        // uint256 startTime = advancedOrder.parameters.startTime;
 
         // Place the end time for the order on the stack.
-        uint256 endTime = advancedOrder.parameters.endTime;
+        // uint256 endTime = advancedOrder.parameters.endTime;
 
         // Retrieve array of offer items for the order in question.
         offer = advancedOrder.parameters.offer;

@@ -2,18 +2,9 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 
 import { deployContract } from "../contracts";
-import {
-  getOfferOrConsiderationItem,
-  random128,
-  randomBN,
-  toBN,
-} from "../encoding";
+import { getOfferOrConsiderationItem, random128, randomBN, toBN } from "../encoding";
 
-import type {
-  TestERC1155,
-  TestERC20,
-  TestERC721,
-} from "../../../typechain-types";
+import type { TestERC1155, TestERC20, TestERC721 } from "../../../typechain-types";
 import type { JsonRpcSigner } from "@ethersproject/providers";
 import type { BigNumber, BigNumberish, Contract, Wallet } from "ethers";
 
@@ -21,11 +12,7 @@ export const fixtureERC20 = async (signer: JsonRpcSigner | Wallet) => {
   const testERC20: TestERC20 = await deployContract("TestERC20", signer);
   const testERC20_2: TestERC20 = await deployContract("TestERC20", signer);
 
-  const mintAndApproveERC20 = async (
-    signer: Wallet,
-    spender: string,
-    tokenAmount: BigNumberish
-  ) => {
+  const mintAndApproveERC20 = async (signer: Wallet, spender: string, tokenAmount: BigNumberish) => {
     const amount = toBN(tokenAmount);
     // Offerer mints ERC20
     await testERC20.mint(signer.address, amount);
@@ -35,27 +22,15 @@ export const fixtureERC20 = async (signer: JsonRpcSigner | Wallet) => {
       .to.emit(testERC20, "Approval")
       .withArgs(signer.address, spender, tokenAmount);
   };
-  const mintAndApproveERC20_2 = async (
-    erc20: TestERC20,
-    signer: Wallet,
-    spender: string,
-    tokenAmount: BigNumberish
-  ) => {
+  const mintAndApproveERC20_2 = async (erc20: TestERC20, signer: Wallet, spender: string, tokenAmount: BigNumberish) => {
     const amount = toBN(tokenAmount);
     // Offerer mints ERC20
     await erc20.mint(signer.address, amount);
 
     // Offerer approves marketplace contract to tokens
-    await expect(erc20.connect(signer).approve(spender, amount))
-      .to.emit(erc20, "Approval")
-      .withArgs(signer.address, spender, tokenAmount);
+    await expect(erc20.connect(signer).approve(spender, amount)).to.emit(erc20, "Approval").withArgs(signer.address, spender, tokenAmount);
   };
-  const getTestItem20 = (
-    startAmount: BigNumberish = 50,
-    endAmount: BigNumberish = 50,
-    recipient?: string,
-    token = testERC20.address
-  ) =>
+  const getTestItem20 = (startAmount: BigNumberish = 50, endAmount: BigNumberish = 50, recipient?: string, token = testERC20.address) =>
     getOfferOrConsiderationItem(1, token, 0, startAmount, endAmount, recipient);
 
   return {
@@ -70,12 +45,7 @@ export const fixtureERC20 = async (signer: JsonRpcSigner | Wallet) => {
 export const fixtureERC721 = async (signer: JsonRpcSigner | Wallet) => {
   const testERC721: TestERC721 = await deployContract("TestERC721", signer);
 
-  const set721ApprovalForAll = (
-    signer: Wallet,
-    spender: string,
-    approved = true,
-    contract = testERC721
-  ) => {
+  const set721ApprovalForAll = (signer: Wallet, spender: string, approved = true, contract = testERC721) => {
     return expect(contract.connect(signer).setApprovalForAll(spender, approved))
       .to.emit(contract, "ApprovalForAll")
       .withArgs(signer.address, spender, approved);
@@ -93,11 +63,7 @@ export const fixtureERC721 = async (signer: JsonRpcSigner | Wallet) => {
     return arr;
   };
 
-  const mintAndApprove721 = async (
-    signer: Wallet,
-    spender: string,
-    id?: BigNumberish
-  ) => {
+  const mintAndApprove721 = async (signer: Wallet, spender: string, id?: BigNumberish) => {
     await set721ApprovalForAll(signer, spender, true);
     return mint721(signer, id);
   };
@@ -108,30 +74,14 @@ export const fixtureERC721 = async (signer: JsonRpcSigner | Wallet) => {
     endAmount: BigNumberish = 1,
     recipient?: string,
     token = testERC721.address
-  ) =>
-    getOfferOrConsiderationItem(
-      2,
-      token,
-      identifierOrCriteria,
-      startAmount,
-      endAmount,
-      recipient
-    );
+  ) => getOfferOrConsiderationItem(2, token, identifierOrCriteria, startAmount, endAmount, recipient);
 
   const getTestItem721WithCriteria = (
     identifierOrCriteria: BigNumberish,
     startAmount: BigNumberish = 1,
     endAmount: BigNumberish = 1,
     recipient?: string
-  ) =>
-    getOfferOrConsiderationItem(
-      4,
-      testERC721.address,
-      identifierOrCriteria,
-      startAmount,
-      endAmount,
-      recipient
-    );
+  ) => getOfferOrConsiderationItem(4, testERC721.address, identifierOrCriteria, startAmount, endAmount, recipient);
 
   return {
     testERC721,
@@ -147,44 +97,21 @@ export const fixtureERC721 = async (signer: JsonRpcSigner | Wallet) => {
 export const fixtureERC1155 = async (signer: JsonRpcSigner | Wallet) => {
   const testERC1155: TestERC1155 = await deployContract("TestERC1155", signer);
 
-  const set1155ApprovalForAll = (
-    signer: Wallet,
-    spender: string,
-    approved = true,
-    token = testERC1155
-  ) => {
+  const set1155ApprovalForAll = (signer: Wallet, spender: string, approved = true, token = testERC1155) => {
     return expect(token.connect(signer).setApprovalForAll(spender, approved))
       .to.emit(token, "ApprovalForAll")
       .withArgs(signer.address, spender, approved);
   };
 
-  const mint1155 = async (
-    signer: Wallet,
-    multiplier = 1,
-    token = testERC1155,
-    id?: BigNumberish,
-    amt?: BigNumberish
-  ) => {
+  const mint1155 = async (signer: Wallet, multiplier = 1, token = testERC1155, id?: BigNumberish, amt?: BigNumberish) => {
     const nftId = id ? toBN(id) : randomBN();
     const amount = amt ? toBN(amt) : toBN(randomBN(4));
     await token.mint(signer.address, nftId, amount.mul(multiplier));
     return { nftId, amount };
   };
 
-  const mintAndApprove1155 = async (
-    signer: Wallet,
-    spender: string,
-    multiplier = 1,
-    id?: BigNumberish,
-    amt?: BigNumberish
-  ) => {
-    const { nftId, amount } = await mint1155(
-      signer,
-      multiplier,
-      testERC1155,
-      id,
-      amt
-    );
+  const mintAndApprove1155 = async (signer: Wallet, spender: string, multiplier = 1, id?: BigNumberish, amt?: BigNumberish) => {
+    const { nftId, amount } = await mint1155(signer, multiplier, testERC1155, id, amt);
     await set1155ApprovalForAll(signer, spender, true);
     return { nftId, amount };
   };
@@ -194,15 +121,7 @@ export const fixtureERC1155 = async (signer: JsonRpcSigner | Wallet) => {
     startAmount: BigNumberish = 1,
     endAmount: BigNumberish = 1,
     recipient?: string
-  ) =>
-    getOfferOrConsiderationItem(
-      5,
-      testERC1155.address,
-      identifierOrCriteria,
-      startAmount,
-      endAmount,
-      recipient
-    );
+  ) => getOfferOrConsiderationItem(5, testERC1155.address, identifierOrCriteria, startAmount, endAmount, recipient);
 
   const getTestItem1155 = (
     identifierOrCriteria: BigNumberish,
@@ -210,15 +129,7 @@ export const fixtureERC1155 = async (signer: JsonRpcSigner | Wallet) => {
     endAmount: BigNumberish,
     token = testERC1155.address,
     recipient?: string
-  ) =>
-    getOfferOrConsiderationItem(
-      3,
-      token,
-      identifierOrCriteria,
-      startAmount,
-      endAmount,
-      recipient
-    );
+  ) => getOfferOrConsiderationItem(3, token, identifierOrCriteria, startAmount, endAmount, recipient);
 
   return {
     testERC1155,
@@ -265,11 +176,7 @@ export const tokensFixture = async (signer: JsonRpcSigner | Wallet) => {
         await (contract as TestERC20).mint(receiver.address, amount);
 
         // Receiver approves contract to transfer tokens
-        await expect(
-          (contract as TestERC20)
-            .connect(receiver)
-            .approve(approvalAddress, amount)
-        )
+        await expect((contract as TestERC20).connect(receiver).approve(approvalAddress, amount))
           .to.emit(contract, "Approval")
           .withArgs(receiver.address, approvalAddress, amount);
         break;
@@ -280,12 +187,7 @@ export const tokensFixture = async (signer: JsonRpcSigner | Wallet) => {
         await (contract as TestERC721).mint(receiver.address, identifier);
 
         // Receiver approves contract to transfer tokens
-        await erc721.set721ApprovalForAll(
-          receiver,
-          approvalAddress,
-          true,
-          contract as TestERC721
-        );
+        await erc721.set721ApprovalForAll(receiver, approvalAddress, true, contract as TestERC721);
         break;
       case 3: // ERC1155
       case 5: // ERC1155_WITH_CRITERIA
@@ -294,12 +196,7 @@ export const tokensFixture = async (signer: JsonRpcSigner | Wallet) => {
         await contract.mint(receiver.address, identifier, amount);
 
         // Receiver approves contract to transfer tokens
-        await erc1155.set1155ApprovalForAll(
-          receiver,
-          approvalAddress,
-          true,
-          contract as TestERC1155
-        );
+        await erc1155.set1155ApprovalForAll(receiver, approvalAddress, true, contract as TestERC1155);
         break;
     }
     return { itemType, token, from, to, identifier, amount };

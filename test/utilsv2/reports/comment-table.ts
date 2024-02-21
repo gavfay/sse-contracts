@@ -5,12 +5,7 @@ const warn = chalk.hex("#FFA500");
 const info = chalk.blue;
 const success = chalk.green;
 
-export function diffPctString(
-  newValue: number,
-  oldValue: number,
-  warnOnIncrease?: boolean,
-  diffOnly?: boolean
-): string {
+export function diffPctString(newValue: number, oldValue: number, warnOnIncrease?: boolean, diffOnly?: boolean): string {
   if ([newValue, oldValue].every(isNaN)) {
     return warn("null");
   }
@@ -26,10 +21,7 @@ export function diffPctString(
 // eslint-disable-next-line no-control-regex
 const stripANSI = (str: string) => str.replace(/\u001b\[.*?m/g, "");
 
-export function getColumnSizesAndAlignments(
-  rows: string[][],
-  padding = 0
-): Array<[number, boolean]> {
+export function getColumnSizesAndAlignments(rows: string[][], padding = 0): Array<[number, boolean]> {
   const sizesAndAlignments: Array<[number, boolean]> = [];
   const numColumns = rows[0].length;
   for (let i = 0; i < numColumns; i++) {
@@ -41,12 +33,7 @@ export function getColumnSizesAndAlignments(
   return sizesAndAlignments;
 }
 
-const padColumn = (
-  col: string,
-  size: number,
-  padWith: string,
-  alignLeft: boolean
-) => {
+const padColumn = (col: string, size: number, padWith: string, alignLeft: boolean) => {
   const padSize = Math.max(0, size - stripANSI(col).length);
   const padding = padWith.repeat(padSize);
   if (alignLeft) return `${col}${padding}`;
@@ -63,9 +50,7 @@ export const toCommentTable = (rows: string[][]): string[] => {
   });
 
   const completeRows = rows.map((row) => `| ${row.join(" | ")} |`);
-  const rowSeparator = `==${sizesAndAlignments
-    .map(([size]) => "=".repeat(size))
-    .join("===")}==`;
+  const rowSeparator = `==${sizesAndAlignments.map(([size]) => "=".repeat(size)).join("===")}==`;
   completeRows.splice(1, 0, rowSeparator);
   completeRows.unshift(rowSeparator);
   completeRows.push(rowSeparator);

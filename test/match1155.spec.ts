@@ -1,5 +1,6 @@
 import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
+import { type Wallet } from "ethers";
 import { ethers, network } from "hardhat";
 
 import { randomHex, toBN } from "./utilsv2/encoding";
@@ -7,9 +8,9 @@ import { faucet } from "./utilsv2/faucet";
 import { marketFixture } from "./utilsv2/fixtures";
 import { VERSION } from "./utilsv2/helpers";
 
-import { BigNumber, type Wallet } from "ethers";
 import type { SseMarket, TestERC1155, TestERC20, TestERC721 } from "../typechain-types";
 import type { MarketFixtures } from "./utilsv2/fixtures";
+import type { BigNumber } from "ethers";
 
 const { parseEther, formatUnits } = ethers.utils;
 
@@ -388,8 +389,8 @@ describe(`Mathch tests (SseMarket v${VERSION}) ERC20 <-> ERC1155`, function () {
     expect(await testERC1155.balanceOf(taker.address, nftId).then((b) => b.toString())).to.be.eq("1");
   });
   it("Multi zero assets match for bid", async () => {
-    const nftId = 1,
-      amount = 10;
+    const nftId = 1;
+    const amount = 10;
     await mint1155(taker, 1, testERC1155, nftId, amount);
     await mint1155(taker2, 1, testERC1155, nftId, amount);
     await set1155ApprovalForAll(taker, marketplaceContract.address);

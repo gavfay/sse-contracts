@@ -10,16 +10,9 @@ const deployConstants = require("../../../constants/constants");
 
 export const create2FactoryFixture = async (owner: Wallet) => {
   // Deploy keyless create2 deployer
-  await faucet(
-    deployConstants.KEYLESS_CREATE2_DEPLOYER_ADDRESS,
-    ethers.provider
-  );
-  await ethers.provider.sendTransaction(
-    deployConstants.KEYLESS_CREATE2_DEPLOYMENT_TRANSACTION
-  );
-  let deployedCode = await ethers.provider.getCode(
-    deployConstants.KEYLESS_CREATE2_ADDRESS
-  );
+  await faucet(deployConstants.KEYLESS_CREATE2_DEPLOYER_ADDRESS, ethers.provider);
+  await ethers.provider.sendTransaction(deployConstants.KEYLESS_CREATE2_DEPLOYMENT_TRANSACTION);
+  let deployedCode = await ethers.provider.getCode(deployConstants.KEYLESS_CREATE2_ADDRESS);
   expect(deployedCode).to.equal(deployConstants.KEYLESS_CREATE2_RUNTIME_CODE);
 
   let { gasLimit } = await ethers.provider.getBlock("latest");
@@ -34,12 +27,8 @@ export const create2FactoryFixture = async (owner: Wallet) => {
     data: deployConstants.IMMUTABLE_CREATE2_FACTORY_CREATION_CODE,
     gasLimit,
   });
-  deployedCode = await ethers.provider.getCode(
-    deployConstants.INEFFICIENT_IMMUTABLE_CREATE2_FACTORY_ADDRESS
-  );
-  expect(ethers.utils.keccak256(deployedCode)).to.equal(
-    deployConstants.IMMUTABLE_CREATE2_FACTORY_RUNTIME_HASH
-  );
+  deployedCode = await ethers.provider.getCode(deployConstants.INEFFICIENT_IMMUTABLE_CREATE2_FACTORY_ADDRESS);
+  expect(ethers.utils.keccak256(deployedCode)).to.equal(deployConstants.IMMUTABLE_CREATE2_FACTORY_RUNTIME_HASH);
 
   const inefficientFactory = await ethers.getContractAt(
     "ImmutableCreate2FactoryInterface",
@@ -50,26 +39,17 @@ export const create2FactoryFixture = async (owner: Wallet) => {
   // Deploy effecient deployer through inefficient deployer
   await inefficientFactory
     .connect(owner)
-    .safeCreate2(
-      deployConstants.IMMUTABLE_CREATE2_FACTORY_SALT,
-      deployConstants.IMMUTABLE_CREATE2_FACTORY_CREATION_CODE,
-      {
-        gasLimit,
-      }
-    );
+    .safeCreate2(deployConstants.IMMUTABLE_CREATE2_FACTORY_SALT, deployConstants.IMMUTABLE_CREATE2_FACTORY_CREATION_CODE, {
+      gasLimit,
+    });
 
-  deployedCode = await ethers.provider.getCode(
-    deployConstants.IMMUTABLE_CREATE2_FACTORY_ADDRESS
+  deployedCode = await ethers.provider.getCode(deployConstants.IMMUTABLE_CREATE2_FACTORY_ADDRESS);
+  expect(ethers.utils.keccak256(deployedCode)).to.equal(deployConstants.IMMUTABLE_CREATE2_FACTORY_RUNTIME_HASH);
+  const create2Factory: ImmutableCreate2FactoryInterface = await ethers.getContractAt(
+    "ImmutableCreate2FactoryInterface",
+    deployConstants.IMMUTABLE_CREATE2_FACTORY_ADDRESS,
+    owner
   );
-  expect(ethers.utils.keccak256(deployedCode)).to.equal(
-    deployConstants.IMMUTABLE_CREATE2_FACTORY_RUNTIME_HASH
-  );
-  const create2Factory: ImmutableCreate2FactoryInterface =
-    await ethers.getContractAt(
-      "ImmutableCreate2FactoryInterface",
-      deployConstants.IMMUTABLE_CREATE2_FACTORY_ADDRESS,
-      owner
-    );
 
   return create2Factory;
 };
